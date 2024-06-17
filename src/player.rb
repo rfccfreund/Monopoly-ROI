@@ -18,4 +18,12 @@ class Player
 
     end 
 
+    def purchase(property)
+        @holdings << property 
+    end
+
+    def pay_player(amount, player)
+        @cash -= amount
+        player.cash += amount
+    end 
 end

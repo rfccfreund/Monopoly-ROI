@@ -1,3 +1,6 @@
+require './player'
+require './tile'
+
 # TODO
 # Create game map using hashmap and Tile objects
 
@@ -9,3 +12,12 @@
 # player purchases or pays
 # other players take turns
 # next round 
+
+
+med_ave  = Property.new("Med Ave", 60, 2)
+
+player1 = Player.new("John")
+
+
+puts med_ave.info
+
