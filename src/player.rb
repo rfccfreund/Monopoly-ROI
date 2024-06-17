@@ -14,8 +14,11 @@ class Player
         roll = rand(1..2) + rand(1..2)
         puts "#{@name} rolls a #{roll}"
         @position += roll
-        if @position > 39 # replace with gameboard length method 
-            @position = @position % 39
+        if @position > 4 # replace with gameboard length method 
+            @position = @position % 4
+            if @position == 0
+                @position = 1
+            end
         end  
 
     end 
@@ -23,6 +26,7 @@ class Player
     def purchase(property)
         @holdings << property 
         @cash -= property.price
+        property.update_owner(self)
     end
 
     def pay_player(amount, player)

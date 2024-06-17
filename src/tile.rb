@@ -18,13 +18,22 @@ class Property < Tile
         @price = price
         @rent = rent
         @is_owned = false 
+        @revenue = 0
     end
 
     def info
         super + ", Price: #{@price}, Rent: #{@rent}"
     end
 
-    def purchase
-        @is_owned = true
+    def update_owner(player)
+        @is_owned = player
+    end
+
+    def generate_income
+        @revenue += @rent
+    end 
+
+    def return_on_investment
+      "#{@revenue.to_f / @price.to_f}"
     end
 end
