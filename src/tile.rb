@@ -6,7 +6,7 @@ class Tile
     end
 
     def info
-        "Tile Name: #{@name}"
+        "#{@name}"
     end
 end
 
@@ -22,5 +22,9 @@ class Property < Tile
 
     def info
         super + ", Price: #{@price}, Rent: #{@rent}"
+    end
+
+    def purchase
+        @is_owned = true
     end
 end
