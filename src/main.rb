@@ -1,8 +1,5 @@
 require './engine'
-# TODO
-# Create game map using hashmap and Tile objects
 
-# TODO 
 # Game loop:
 # player rolls dice
 # players position is updated and corresponding tile is looked at
@@ -37,4 +34,4 @@ players << player1
 players << player2
 
 
-play_game(players, 10, game_board)
+play_game(players, 100, game_board)
