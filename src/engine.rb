@@ -3,6 +3,7 @@ require './tile'
 
 
 def play_game(players, rounds, game_board) 
+    prop_returns = []
 
     rounds.times {   
       players.each do |player| 
@@ -21,5 +22,11 @@ def play_game(players, rounds, game_board)
     game_board.each do |key, value|
         puts value.info
         puts value.return_on_investment
+        prop_returns << value.return_on_investment
     end
+
+  prop_returns  
 end
+
+
+    
