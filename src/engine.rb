@@ -2,13 +2,14 @@ require './player'
 require './tile'
 
 
+
 def play_game(players, rounds, game_board) 
     prop_returns = []
-
+    
     rounds.times {   
       players.each do |player| 
         player.roll_dice
-        loc = game_board[player.position.to_s]
+        loc = game_board[player.position]
         unless loc.is_owned
         player.purchase(loc)      
         else
@@ -19,10 +20,10 @@ def play_game(players, rounds, game_board)
         player.status
       end 
     }
-    game_board.each do |key, value|
-        puts value.info
-        puts value.return_on_investment
-        prop_returns << value.return_on_investment
+    game_board.each do |prop|
+        puts prop.info
+        puts prop.return_on_investment
+        prop_returns << prop.return_on_investment
     end
 
   prop_returns  

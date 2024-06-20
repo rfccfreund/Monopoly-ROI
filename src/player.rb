@@ -14,11 +14,8 @@ class Player
         roll = rand(1..2) + rand(1..2)
         puts "#{@name} rolls a #{roll}"
         @position += roll
-        if @position > 4 # replace with gameboard length method 
-            @position = @position % 4
-            if @position == 0
-                @position = 1
-            end
+        if @position > 25 # replace with gameboard length method 
+            @position = @position % 26
         end  
 
     end 
