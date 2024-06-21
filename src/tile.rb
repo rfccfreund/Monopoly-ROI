@@ -34,6 +34,6 @@ class Property < Tile
     end 
 
     def return_on_investment
-      "#{@revenue.to_f / @price.to_f}"
+      @revenue.to_f / @price.to_f
     end
 end
