@@ -54,3 +54,16 @@ class Go < Tile
     player.cash += @payday    
   end
 end 
+
+class Chance < Tile
+  
+    def initialize(name)
+        super(name)
+    end
+
+    def generate_event
+      event = rand
+
+    end
+
+end

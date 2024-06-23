@@ -11,7 +11,7 @@ class Player
     end
 
     def roll_dice()
-        roll = rand(1..2) + rand(1..2)
+        roll = rand(1..6) + rand(1..6)
         puts "#{@name} rolls a #{roll}"
         @position += roll
         if @position > 25 # replace with gameboard length method 
