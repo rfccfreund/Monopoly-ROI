@@ -10,13 +10,8 @@ require './forge'
 # next round 
 all_returns = []
 
-100.times do
-  players = []
-  player1 = Player.new("John")
-  player2 = Player.new("Mary")
-
-  players << player1 
-  players << player2
+1.times do
+  players = create_players()
   game_board = create_gameboard()
   all_returns << play_game(players, 100, game_board)
 end
