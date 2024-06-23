@@ -2,7 +2,7 @@ require './tile'
 
 def create_gameboard 
   game_board = [
-  go = Property.new("Go", 0, 0),
+  go = Go.new("Go"),
   med_ave  = Property.new("Med Ave", 60, 2),
   baltic_ave = Property.new("Baltic Ave", 60, 4),
   ori_ave = Property.new("Oriental Avenue", 100, 6),
@@ -32,6 +32,20 @@ def create_gameboard
   boardwalk = Property.new( "Boardwalk", 400,  50)
 ]                 
   
+end
+
+def create_players
+    players = []
+    player1 = Player.new("John")
+    player2 = Player.new("Mary")
+    player3 = Player.new("Sally")
+  
+    players << player1 
+    players << player2
+    players << player3
+
+
+    players
 end
 
 test_tile1 = Property.new("Test 1", 50, 5)

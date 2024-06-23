@@ -37,3 +37,20 @@ class Property < Tile
       @revenue.to_f / @price.to_f
     end
 end
+
+class Go < Tile 
+  attr_accessor :payday
+  
+  def initialize(name)
+    super(name)
+    @payday = 200
+  end
+
+  def info
+    super + "You collected #{@payday}"
+  end 
+
+  def pass_go(player)
+    player.cash += @payday    
+  end
+end 
