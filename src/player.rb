@@ -15,6 +15,7 @@ class Player
         puts "#{@name} rolls a #{roll}"
         @position += roll
         if @position > 25 # replace with gameboard length method 
+            @cash += 200 # for passing go
             @position = @position % 26
         end  
 
@@ -24,6 +25,11 @@ class Player
         @holdings << property 
         @cash -= property.price
         property.update_owner(self)
+    end
+
+    def draws_event(self, property)
+        event = property.generate_event()
+        self.event()
     end
 
     def pay_player(amount, player)
