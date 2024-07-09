@@ -62,7 +62,7 @@ class Chance < Tile
     end
 
     def generate_event
-      event = rand(0..14)
+      event = rand(0..1)
 
       case event
 
