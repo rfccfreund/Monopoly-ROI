@@ -66,7 +66,12 @@ class Chance < Tile
 
       case event
 
-      when 
+      when 0
+        return move_player_to(4)
+      
+      when 1
+        return move_player_to(2)
+      end
 
     end
 

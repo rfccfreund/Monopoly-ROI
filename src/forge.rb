@@ -9,6 +9,7 @@ def create_gameboard
   vermont_ave = Property.new("Vermont Avenue", 100, 6), 
   connecticut_Ave = Property.new("Connecticut Avenue", 120, 8),
   st_charles_place = Property.new("Charles Place", 140, 10),
+  chance_1 = Chance.new("Chance"),
   elec_company = Property.new("Electric Company", 150, 75),
   states_ave = Property.new("States Avenue", 140, 10),
   virgina_ave = Property.new( "Virginia Avenue", 160, 12),

@@ -27,10 +27,14 @@ class Player
         property.update_owner(self)
     end
 
-    def draws_event(self, property)
+    def draws_event(property)
         event = property.generate_event()
         self.event()
     end
+
+    def move_player_to(int)
+      @position = int
+    end    
 
     def pay_player(amount, player)
         @cash -= amount
