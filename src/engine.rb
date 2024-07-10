@@ -18,8 +18,7 @@ def play_game(players, rounds, game_board)
               player.pay_player(loc.rent, loc.is_owned)
               loc.generate_income
             end
-            puts "\n"
-            player.status
+            player.cash_on_hand
           end 
         else
           unless loc.is_a?(Chance) 
@@ -34,14 +33,14 @@ def play_game(players, rounds, game_board)
                 player.pay_player(loc.rent, loc.is_owned)  
                 loc.generate_income
               end
-              puts "\n"
-              player.status
+              player.cash_on_hand              
             end
           end
 
         end
-      end 
+      end       
     }
+    players.each do |player| player.current_holdings end 
 
     game_board.each do |prop|
         puts prop.info
