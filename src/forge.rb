@@ -18,6 +18,7 @@ def create_gameboard
   tenn_ave = Property.new( "Tennessee Avenue", 180, 14),
   ny_ave = Property.new( "New York Avenue", 200, 16),
   kent_ave = Property.new( "Kentucky Avenue", 220, 18),
+  chance_2 = Chance.new("Chance"),
   indiana_ave = Property.new( "Indiana Avenue", 220,  18),
   illinois_ave = Property.new( "Illinois Avenue", 240, 20),
   bo_rail = Property.new( "B. & O. Railroad", 200,  25),
@@ -29,6 +30,7 @@ def create_gameboard
   nc_avenue = Property.new( "North Carolina Avenue",  300,  26),
   penn_ave = Property.new( "Pennsylvania Avenue",  320, 28),
   short_line_rail = Property.new( "Short Line", 200, 25),
+  chance_3 = Chance.new("Chance"),
   park_place = Property.new( "Park Place", 350,  35),
   boardwalk = Property.new( "Boardwalk", 400,  50)
 ]                 

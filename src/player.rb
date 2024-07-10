@@ -34,11 +34,19 @@ class Player
 
     def move_player_to(int)
       @position = int
-    end    
+    end 
+    
+    def move_player(int)
+        @position += int
+    end
 
     def pay_player(amount, player)
         @cash -= amount
         player.cash += amount
+    end
+
+    def update_cash(amount)
+        @cash += amount
     end
     
     def status
@@ -51,6 +59,7 @@ class Player
     end
 
     def current_holdings
+        puts "\n #{@name}"
         @holdings.each {|prop| puts prop.info}
     end
 end

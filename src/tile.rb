@@ -62,17 +62,103 @@ class Chance < Tile
     end
 
     def generate_event
-      event = rand(0..1)
+      event = rand(0..11)
 
       case event
 
       when 0
-        return move_player_to(4)
+        return move_player_to(0) # Advance to GO
       
       when 1
-        return move_player_to(2)
+        return move_player_to(21) # Advance to Ill Ave
+        # need pass GO logic...maybe an array of functions to return
+
+      when 2
+        return move_player_to(2) # advance to St. Charles
+
+      when 3
+        return move_player_to(15) # advance to nearest utility 
+      
+      when 4
+        return move_player_to(10) # advance to the nearest railroad
+
+      when 5
+        return update_cash(50) # Bank pays dividend
+
+      when 6
+        return move_player(-3) # move player back 3 spaces
+
+      when 7
+        return move_player_to(10) # move player to jail
+
+      when 8 
+        return move_player_to(11) # move player to reading railroad
+
+      when 9 
+        return update_cash(-15) # pay poor take of -15
+
+      when 10
+        return move_player_to(20) # advance to boardwalk
+
+      when 11
+        return update_cash(150)
+
       end
 
     end
+
+end
+
+class Community < Tile  # similar to chance but with different random events
+  
+  def initialize(name)
+      super(name)
+  end
+
+  def generate_event
+    event = rand(0..11)
+
+    case event
+
+    when 0
+      return move_player_to(0) # Advance to GO
+    
+    when 1
+      return move_player_to(21) # Advance to Ill Ave
+      # need pass GO logic...maybe an array of functions to return
+
+    when 2
+      return move_player_to(2) # advance to St. Charles
+
+    when 3
+      return move_player_to(15) # advance to nearest utility 
+    
+    when 4
+      return move_player_to(10) # advance to the nearest railroad
+
+    when 5
+      return update_cash(50) # Bank pays dividend
+
+    when 6
+      return move_player(-3) # move player back 3 spaces
+
+    when 7
+      return move_player_to(10) # move player to jail
+
+    when 8 
+      return move_player_to(11) # move player to reading railroad
+
+    when 9 
+      return update_cash(-15) # pay poor take of -15
+
+    when 10
+      return move_player_to(20) # advance to boardwalk
+
+    when 11
+      return update_cash(150)
+
+    end
+
+  end
 
 end

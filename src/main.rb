@@ -8,6 +8,12 @@ require './forge'
 # player purchases or pays
 # other players take turns
 # next round 
+
+# TODO
+# update community chest tile
+# update gameboard and player movement function
+# revist return function and map to tiles
+
 all_returns = []
 
 100.times do
