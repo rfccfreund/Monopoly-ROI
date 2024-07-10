@@ -11,10 +11,11 @@ class Player
     end
 
     def roll_dice()
-        roll = rand(1..2) + rand(1..2)
+        roll = rand(1..6) + rand(1..6)
         puts "#{@name} rolls a #{roll}"
         @position += roll
         if @position > 25 # replace with gameboard length method 
+            @cash += 200 # for passing go
             @position = @position % 26
         end  
 
@@ -26,6 +27,15 @@ class Player
         property.update_owner(self)
     end
 
+    def draws_event(property)
+        event = property.generate_event()
+        self.event()
+    end
+
+    def move_player_to(int)
+      @position = int
+    end    
+
     def pay_player(amount, player)
         @cash -= amount
         player.cash += amount
@@ -34,5 +44,13 @@ class Player
     def status
         puts "#{@name} has $#{@cash} and the following properties"
         @holdings.each {|prop| puts prop.info}           
+    end
+
+    def cash_on_hand
+      puts "#{@name} has $#{@cash} on hand"
+    end
+
+    def current_holdings
+        @holdings.each {|prop| puts prop.info}
     end
 end
