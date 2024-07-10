@@ -45,4 +45,12 @@ class Player
         puts "#{@name} has $#{@cash} and the following properties"
         @holdings.each {|prop| puts prop.info}           
     end
+
+    def cash_on_hand
+      puts "#{@name} has $#{@cash} on hand"
+    end
+
+    def current_holdings
+        @holdings.each {|prop| puts prop.info}
+    end
 end
