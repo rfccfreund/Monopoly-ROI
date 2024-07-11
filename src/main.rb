@@ -10,7 +10,7 @@ require './forge'
 # next round 
 
 # TODO
-# update community chest tile
+
 # update gameboard and player movement function
 # revist return function and map to tiles
 
