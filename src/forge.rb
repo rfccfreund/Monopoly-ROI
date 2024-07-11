@@ -4,6 +4,7 @@ def create_gameboard
   game_board = [
   go = Go.new("Go"),
   med_ave  = Property.new("Med Ave", 60, 2),
+  com_chest_1 = Community.new("Community Chest"),
   baltic_ave = Property.new("Baltic Ave", 60, 4),
   ori_ave = Property.new("Oriental Avenue", 100, 6),
   vermont_ave = Property.new("Vermont Avenue", 100, 6), 
@@ -15,9 +16,11 @@ def create_gameboard
   virgina_ave = Property.new( "Virginia Avenue", 160, 12),
   penn_rail = Property.new( "Pennsylvania Railroad", 200, 25),
   st_james_place = Property.new( "St. James Place", 180,14),
+  com_chest_2 = Community.new("Community Chest"),
   tenn_ave = Property.new( "Tennessee Avenue", 180, 14),
   ny_ave = Property.new( "New York Avenue", 200, 16),
   kent_ave = Property.new( "Kentucky Avenue", 220, 18),
+  chance_2 = Chance.new("Chance"),
   indiana_ave = Property.new( "Indiana Avenue", 220,  18),
   illinois_ave = Property.new( "Illinois Avenue", 240, 20),
   bo_rail = Property.new( "B. & O. Railroad", 200,  25),
@@ -27,8 +30,10 @@ def create_gameboard
   marvin_gardens = Property.new( "Marvin Gardens",  280,  24),
   pacific_ave = Property.new( "Pacific Avenue",  300, 26),
   nc_avenue = Property.new( "North Carolina Avenue",  300,  26),
+  com_chest_3 = Community.new("Community Chest"),
   penn_ave = Property.new( "Pennsylvania Avenue",  320, 28),
   short_line_rail = Property.new( "Short Line", 200, 25),
+  chance_3 = Chance.new("Chance"),
   park_place = Property.new( "Park Place", 350,  35),
   boardwalk = Property.new( "Boardwalk", 400,  50)
 ]                 

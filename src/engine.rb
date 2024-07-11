@@ -11,7 +11,7 @@ def play_game(players, rounds, game_board)
         player.roll_dice
         loc = game_board[player.position]
         unless loc.is_a?(Go)
-          unless loc.is_a?(Chance) 
+          unless loc.is_a?(Chance) or loc.is_a?(Community)
             unless loc.is_owned
               player.purchase(loc)      
             else
@@ -21,7 +21,7 @@ def play_game(players, rounds, game_board)
             player.cash_on_hand
           end 
         else
-          unless loc.is_a?(Chance) 
+          unless loc.is_a?(Chance) or loc.is_a?(Community)
             loc.pass_go(player)
           else
             player.draws_event(loc)
@@ -45,7 +45,7 @@ def play_game(players, rounds, game_board)
     game_board.each do |prop|
         puts prop.info
         unless prop.is_a?(Go)
-          unless prop.is_a?(Chance)
+          unless prop.is_a?(Chance) or prop.is_a?(Community)
             puts prop.return_on_investment
             prop_returns << prop.return_on_investment
           end
