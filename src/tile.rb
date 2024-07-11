@@ -110,6 +110,7 @@ class Chance < Tile
 end
 
 class Community < Tile  # similar to chance but with different random events
+ 
   
   def initialize(name)
       super(name)
@@ -124,38 +125,37 @@ class Community < Tile  # similar to chance but with different random events
       return move_player_to(0) # Advance to GO
     
     when 1
-      return move_player_to(21) # Advance to Ill Ave
-      # need pass GO logic...maybe an array of functions to return
+      return update_cash(200) # Bank error in your favor
 
     when 2
-      return move_player_to(2) # advance to St. Charles
+      return update_cash(-50) # Doctor fees
 
     when 3
-      return move_player_to(15) # advance to nearest utility 
+      return update_cash(100) # Holiday fund matures
     
     when 4
-      return move_player_to(10) # advance to the nearest railroad
+      return update_cash(20) # income tax refund
 
     when 5
-      return update_cash(50) # Bank pays dividend
+      return update_cash(100) # life insurance pay out
 
     when 6
-      return move_player(-3) # move player back 3 spaces
+      return update_cash(-100) # hospital fees
 
     when 7
-      return move_player_to(10) # move player to jail
+      return update_cash(-50) # school fees
 
     when 8 
-      return move_player_to(11) # move player to reading railroad
+      return update_cash(25) # consultancy fee
 
     when 9 
       return update_cash(-15) # pay poor take of -15
 
     when 10
-      return move_player_to(20) # advance to boardwalk
+      return update_cash(10) # beauty contest
 
     when 11
-      return update_cash(150)
+      return update_cash(100) # inheritance 
 
     end
 
