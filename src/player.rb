@@ -27,6 +27,10 @@ class Player
         property.update_owner(self)
     end
 
+    def upgrade_property(property)
+       property.build_house()
+    end
+
     def draws_event(property)
         event = property.generate_event()
         self.event()

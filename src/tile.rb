@@ -19,6 +19,7 @@ class Property < Tile
         @rent = rent
         @is_owned = false 
         @revenue = 0
+        @upgrade_path = []
     end
 
     def info
@@ -27,6 +28,10 @@ class Property < Tile
 
     def update_owner(player)
         @is_owned = player
+    end
+
+    def build_house
+      pass 
     end
 
     def generate_income
