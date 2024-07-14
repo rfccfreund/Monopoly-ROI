@@ -162,3 +162,30 @@ class Community < Tile  # similar to chance but with different random events
   end
 
 end
+
+class Free_Parking < Tile
+  
+  def initialize(name)
+    super(name)
+  end
+
+end
+
+class Jail < Tile
+
+  def initialize(name)
+    super(name)
+  end
+
+end 
+
+class Go_To_Jail < Tile
+  
+  def initialize(name)
+    super(name)
+  end
+  
+  def send_to_jail
+    return move_player_to(0) # Send to jail space
+  end
+end
