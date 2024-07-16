@@ -22,7 +22,7 @@ def create_gameboard
   com_chest_2 = Community.new("Community Chest"), 
   tenn_ave = Property.new( "Tennessee Avenue", 180, 14),
   ny_ave = Property.new("New York Avenue", 200, 16),
-  free_parking = Free_Parking.new("Free Parking"), # Space 20
+  free_parking = Jail.new("Free Parking"), # Space 20
   kent_ave = Property.new( "Kentucky Avenue", 220, 18),
   chance_2 = Chance.new("Chance"), 
   indiana_ave = Property.new( "Indiana Avenue", 220,  18),
