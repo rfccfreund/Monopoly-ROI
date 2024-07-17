@@ -16,7 +16,7 @@ require './forge'
 
 all_returns = []
 
-100.times do
+1.times do
   players = create_players()
   game_board = create_gameboard()
   all_returns << play_game(players, 100, game_board)
