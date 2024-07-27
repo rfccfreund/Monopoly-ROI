@@ -21,6 +21,8 @@ class Property < Tile
         @rent = rent
         @is_owned = false 
         @revenue = 0
+        @houses = 0
+        @hotel = false
     end
 
     def info
@@ -29,6 +31,21 @@ class Property < Tile
 
     def update_owner(player)
         @is_owned = player
+    end
+
+    def build_house
+      if @houses <= 4
+        @houses += 1
+      else
+        @hotel = true      
+    end
+
+    def num_houses
+      return @houses
+    end
+
+    def has_hotel?
+      return @hotel
     end
 
     def generate_income
