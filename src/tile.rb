@@ -15,14 +15,18 @@ end
 class Property < Tile
     attr_accessor :price, :rent, :is_owned
 
-    def initialize(name, price, rent)
+    def initialize(name, price, rent_path)
         super(name)
         @price = price
-        @rent = rent
+        @rent_path = rent_path
+        @rent = 0
         @is_owned = false 
         @revenue = 0
         @houses = 0
         @hotel = false
+        @rent_path = rent_path
+
+        @rent = @rent_path[@houses]
     end
 
     def info
@@ -36,8 +40,11 @@ class Property < Tile
     def build_house
       if @houses <= 4
         @houses += 1
+        @rent = @rent_path[@houses]
       else
-        @hotel = true      
+        @hotel = true
+        @rent = @rent_path[-1]  
+      end    
     end
 
     def num_houses
