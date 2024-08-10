@@ -10,10 +10,7 @@ require 'pp'
 # other players take turns
 # next round 
 
-# TODO
 
-# update gameboard and player movement function
-# revist return function and map to tiles
 properties = ["Med", "Baltic", "RR", "Ori Ave", "Vermont", "Connecticut", "Charles Place", "EE", "States Ave", "Virginia", "Penn Rail", "St. James",
 "Tenn Ave", "NY Ave", "Ken Ave", "Indiana", "Illinois", "B&O Rail", "Atlantic Ave", "Ventnor Ave", "WW", "Marvin Gardins", "Pacific Ave", "NC Ave", "Penn Ave",
 "Short Line", "Park Place", "Boardwalk"]
