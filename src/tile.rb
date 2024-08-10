@@ -81,6 +81,32 @@ class Go < Tile
   end
 end 
 
+class Utility < Tile 
+  attr_accessor :payday
+  
+  def initialize(name)
+    super(name)
+    @payday = 200
+  end
+
+  def info
+    super + "You collected #{@payday}"
+  end   
+end 
+
+class Railroad < Tile 
+  attr_accessor :payday
+  
+  def initialize(name)
+    super(name)
+    @payday = 200
+  end
+
+  def info
+    super + "You collected #{@payday}"
+  end   
+end 
+
 class Chance < Tile
   
     def initialize(name)
