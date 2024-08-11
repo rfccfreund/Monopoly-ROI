@@ -1,12 +1,13 @@
 require './tile'
 
 class Player 
-    attr_accessor :name, :cash, :position, :holdings
+    attr_accessor :name, :cash, :position, :holdings, :num_houses
 
     def initialize(name)
         @name = name
         @cash = 1500
         @position = 0
+        @num_railroads
         @holdings = []
     end
 
@@ -25,6 +26,10 @@ class Player
         @holdings << property 
         @cash -= property.price
         property.update_owner(self)
+
+        if property.is_a?(Railroad)
+          @num_railroads += 1
+        end
     end
 
     def upgrade_prop(property)
