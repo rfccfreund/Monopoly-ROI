@@ -37,6 +37,14 @@ def eval_tile(tile, player, game_board) # can replace entire eval function with 
       tile.generate_income
     end
 
+  when 'Railroad'
+    unless tile.is_owned
+      player.purchase(tile)      
+    else
+      player.pay_player(tile.rent, tile.is_owned)
+      tile.generate_income
+    end
+
   when 'Go'
     tile.pass_go(player)
 

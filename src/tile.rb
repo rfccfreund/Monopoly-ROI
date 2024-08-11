@@ -24,8 +24,7 @@ class Property < Tile
         @revenue = 0
         @houses = 0
         @hotel = false
-        @rent_path = rent_path
-
+        
         @rent = @rent_path[@houses]
     end
 
@@ -82,11 +81,11 @@ class Go < Tile
 end 
 
 class Utility < Tile 
-  attr_accessor :payday
+  attr_accessor :price, :rent, :is_owned
   
   def initialize(name)
     super(name)
-    @payday = 200
+    @rent = [25, 50, 100, 200]
   end
 
   def info
@@ -95,14 +94,32 @@ class Utility < Tile
 end 
 
 class Railroad < Tile 
-  attr_accessor :payday
+  attr_accessor :price, :rent, :is_owned
   
   def initialize(name)
     super(name)
-    @payday = 200
+    @rent_path = [25, 50, 100, 200]
+    @num_railroads = 0
+    @rent = @rent_path[@num_railroads]
+    @revenue = 0
   end
 
-  def info
+  def add_railroad
+   @num_railroads += 1
+   @rent = @rent_path[@num_railroads]
+  end
+
+  def generate_income
+    @revenue += @rent
+  end 
+
+  def return_on_investment
+  @revenue.to_f / @price.to_f
+  end
+end
+  
+
+def info
     super + "You collected #{@payday}"
   end   
 end 
