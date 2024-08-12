@@ -7,14 +7,15 @@ class Player
         @name = name
         @cash = 1500
         @position = 0
+        @roll = 0
         @num_railroads
         @holdings = []
     end
 
     def roll_dice()
-        roll = rand(1..6) + rand(1..6)
-        puts "#{@name} rolls a #{roll}"
-        @position += roll
+        @roll = rand(1..6) + rand(1..6)
+        puts "#{@name} rolls a #{@roll}"
+        @position += @roll
         if @position > 39 # replace with gameboard length method 
             @cash += 200 # for passing go
             @position = @position % 39 - 1
@@ -25,11 +26,7 @@ class Player
     def purchase(property)
         @holdings << property 
         @cash -= property.price
-        property.update_owner(self)
-
-        if property.is_a?(Railroad)
-          @num_railroads += 1
-        end
+        property.update_owner(self)        
     end
 
     def upgrade_prop(property)
@@ -131,16 +128,21 @@ class Player
     end 
     
     def move_player(int)
-        @position += int
+      @position += int
     end
 
     def pay_player(amount, player)
-        @cash -= amount
-        player.cash += amount
+      @cash -= amount
+      player.cash += amount
+    end
+
+    def charge_player(amount, player)
+      @cash -= amount * @roll
+      player.cash += amount * @roll
     end
 
     def update_cash(amount)
-        @cash += amount
+      @cash += amount
     end
     
     def status
