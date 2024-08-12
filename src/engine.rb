@@ -26,7 +26,7 @@ def play_game(players, rounds, game_board)
 end
 
 
-def eval_tile(tile, player, game_board) # can replace entire eval function with match statement 
+def eval_tile(tile, player, game_board)
   case tile.class.to_s
 
   when 'Property'
@@ -39,11 +39,29 @@ def eval_tile(tile, player, game_board) # can replace entire eval function with 
 
   when 'Railroad'
     unless tile.is_owned
-      player.purchase(tile)      
+      player.purchase(tile)
+      player.holdings.each do |prop|
+        if prop.is_a?(Railroad)
+          prop.add_railroad
+        end
+      end
     else
       player.pay_player(tile.rent, tile.is_owned)
       tile.generate_income
-    end
+    end  
+
+  when 'Utility'
+    unless tile.is_owned
+      player.purchase(tile)
+      player.holdings.each do |prop|
+        if prop.is_a?(Utility)
+          prop.add_utility
+        end
+      end
+    else
+      player.charge_player(tile.rent, tile.is_owned)
+      tile.generate_income
+    end  
 
   when 'Go'
     tile.pass_go(player)

@@ -85,28 +85,21 @@ class Utility < Tile
   
   def initialize(name)
     super(name)
-    @rent = [25, 50, 100, 200]
-  end
-
-  def info
-    super + "You collected #{@payday}"
-  end   
-end 
-
-class Railroad < Tile 
-  attr_accessor :price, :rent, :is_owned
-  
-  def initialize(name)
-    super(name)
-    @rent_path = [25, 50, 100, 200]
-    @num_railroads = 0
-    @rent = @rent_path[@num_railroads]
+    @price = 100
+    @rent_path = [4, 10]
+    @num_utilities = 0
+    @is_owned = false 
     @revenue = 0
+    @rent = @rent_path[@num_utilities]    
   end
 
-  def add_railroad
-   @num_railroads += 1
-   @rent = @rent_path[@num_railroads]
+  def update_owner(player)
+    @is_owned = player
+  end
+
+  def add_utility
+   @num_utilities += 1
+   @rent = @rent_path[@num_utilities - 1]
   end
 
   def generate_income
@@ -114,15 +107,42 @@ class Railroad < Tile
   end 
 
   def return_on_investment
-  @revenue.to_f / @price.to_f
+    @revenue.to_f / @price.to_f
   end
 end
-  
 
-def info
-    super + "You collected #{@payday}"
-  end   
-end 
+class Railroad < Tile 
+  attr_accessor :price, :rent, :is_owned
+  
+  def initialize(name)
+    super(name)
+    @price = 100
+    @rent_path = [25, 50, 100, 200]
+    @num_railroads = 0
+    @is_owned = false 
+    @revenue = 0
+    @rent = @rent_path[@num_railroads]    
+  end
+
+  def update_owner(player)
+    @is_owned = player
+  end
+
+  def add_railroad
+   @num_railroads += 1
+   @rent = @rent_path[@num_railroads - 1]
+  end
+
+  def generate_income
+    @revenue += @rent
+  end 
+
+  def return_on_investment
+    @revenue.to_f / @price.to_f
+  end
+end
+
+
 
 class Chance < Tile
   

@@ -25,8 +25,8 @@ end
 
 all_returns = all_returns.transpose
 all_returns.each do 
-    |game|
-    avg_returns << game.inject{ |sum, num| sum + num}.to_f / game.size
+  |game|
+  avg_returns << game.inject{ |sum, num| sum + num}.to_f / game.size
 end
 
 pp properties.zip(avg_returns)
