@@ -85,7 +85,7 @@ class Utility < Tile
   
   def initialize(name)
     super(name)
-    @price = 100
+    @price = 150
     @rent_path = [4, 10]
     @num_utilities = 0
     @is_owned = false 

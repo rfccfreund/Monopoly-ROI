@@ -7,14 +7,14 @@ def create_gameboard
   com_chest_1 = Community.new("Community Chest"),
   baltic_ave = Property.new("Baltic Ave", 60, [4]),  
   income_tax = Jail.new("Income Tax"), 
-  read_rail = Property.new( "Reading Railroad", 200,  [25]), # Space 5
+  read_rail = Railroad.new( "Reading Railroad"), # Space 5
   ori_ave = Property.new("Oriental Avenue", 100, [6]),
   chance_1 = Chance.new("Chance"),
   vermont_ave = Property.new("Vermont Avenue", 100, [6]),
   connecticut_Ave = Property.new("Connecticut Avenue", 120, [8]),
   jail = Jail.new("Jail"), # Space 10
   st_charles_place = Property.new("Charles Place", 140, [10]),  
-  elec_company = Property.new("Electric Company", 150, [75]), 
+  elec_company = Utility.new("Electric Company"), 
   states_ave = Property.new("States Avenue", 140, [10]),
   virgina_ave = Property.new( "Virginia Avenue", 160, [12]),
   penn_rail = Property.new( "Pennsylvania Railroad", 200, [25]), # Space 15
