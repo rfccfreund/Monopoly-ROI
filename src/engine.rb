@@ -17,9 +17,9 @@ def play_game(players, rounds, game_board)
 
     game_board.each do |prop|
         puts prop.info
-        if prop.is_a?(Property)
+        if (prop.is_a?(Property) or prop.is_a?(Railroad) or prop.is_a?(Utility))
           puts prop.return_on_investment
-          prop_returns << prop.return_on_investment          
+          prop_returns << prop.return_on_investment             
         end
       end
   prop_returns  
