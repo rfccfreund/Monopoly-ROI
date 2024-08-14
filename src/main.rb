@@ -17,7 +17,7 @@ properties = ["Med", "Baltic", "RR", "Ori Ave", "Vermont", "Connecticut", "Charl
 all_returns = []
 avg_returns = []
 
-25.times do
+50.times do
   players = create_players()
   game_board = create_gameboard()
   all_returns << play_game(players, 100, game_board)
