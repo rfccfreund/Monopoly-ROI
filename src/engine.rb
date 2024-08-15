@@ -1,5 +1,20 @@
 require './player'
 require './tile'
+require './forge'
+
+
+
+def run_simulation()
+  all_returns = []
+
+  50.times do
+    players = create_players()
+    game_board = create_gameboard()
+    all_returns << play_game(players, 100, game_board)
+  end
+
+  return all_returns
+end
 
 
 
