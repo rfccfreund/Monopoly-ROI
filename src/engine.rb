@@ -4,13 +4,13 @@ require './forge'
 
 
 
-def run_simulation()
+def run_simulation(debug=false)
   all_returns = []
 
   50.times do
     players = create_players()
     game_board = create_gameboard()
-    all_returns << play_game(players, 100, game_board)
+    all_returns << play_game(players, 100, game_board, debug)
   end
 
   return all_returns
@@ -18,7 +18,7 @@ end
 
 
 
-def play_game(players, rounds, game_board) 
+def play_game(players, rounds, game_board, debug) 
     prop_returns = []
     
     rounds.times {   
@@ -28,7 +28,12 @@ def play_game(players, rounds, game_board)
         eval_tile(loc, player, game_board)        
       end       
     }
-    players.each do |player| player.current_holdings end 
+
+    if debug == true
+      players.each do |player| player.current_holdings end 
+    
+    end
+    
 
     game_board.each do |prop|
         puts prop.info
@@ -82,9 +87,11 @@ def eval_tile(tile, player, game_board)
     tile.pass_go(player)
 
   when 'Jail'
-   puts "Welcome to the big house"
+    if player.debug
+      puts "Welcome to the big house"
+    end
 
-  when Chance
+  when 'Chance'
     player.draws_event(tile)
     new_loc = game_board[player.position]
     if tile != new_loc and new_loc.is_a?(Property)
@@ -112,8 +119,9 @@ def eval_tile(tile, player, game_board)
     puts "Another tile type" 
 
   end
-
-  player.cash_on_hand  
+  
+  player.cash_on_hand 
+  
 end 
   
   

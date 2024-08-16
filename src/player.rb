@@ -1,20 +1,22 @@
 require './tile'
 
 class Player 
-    attr_accessor :name, :cash, :position, :holdings, :num_houses
+    attr_accessor :name, :cash, :position, :holdings, :num_houses, :debug
 
     def initialize(name)
         @name = name
         @cash = 1500
         @position = 0
         @roll = 0
-        @num_railroads
+        @debug = false
         @holdings = []
     end
 
     def roll_dice()
         @roll = rand(1..6) + rand(1..6)
-        puts "#{@name} rolls a #{@roll}"
+        if @debug
+          puts "#{@name} rolls a #{@roll}"
+        end
         @position += @roll
         if @position > 39 # replace with gameboard length method 
             @cash += 200 # for passing go
@@ -27,6 +29,10 @@ class Player
         @holdings << property 
         @cash -= property.price
         property.update_owner(self)        
+    end
+
+    def toggle_debug
+      @debug = true
     end
 
     def upgrade_prop(property)
@@ -146,12 +152,16 @@ class Player
     end
     
     def status
+      if @debug
         puts "#{@name} has $#{@cash} and the following properties"
-        @holdings.each {|prop| puts prop.info}           
+        @holdings.each {|prop| puts prop.info}  
+      end         
     end
 
     def cash_on_hand
-      puts "#{@name} has $#{@cash} on hand"
+      if @debug
+        puts "#{@name} has $#{@cash} on hand"
+      end
     end
 
     def current_holdings
