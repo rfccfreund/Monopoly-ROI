@@ -3,4 +3,5 @@
 source "https://rubygems.org"
 
 # gems
-gem 'ruby-lsp'
+gem "polars-df"
+gem "vega"

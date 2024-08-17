@@ -72,7 +72,7 @@ class Go < Tile
   end
 
   def info
-    super + "You collected #{@payday}"
+    super + " :You collected #{@payday}"
   end 
 
   def pass_go(player)
@@ -142,8 +142,6 @@ class Railroad < Tile
   end
 end
 
-
-
 class Chance < Tile
   
     def initialize(name)
@@ -166,8 +164,7 @@ class Community < Tile  # similar to chance but with different random events
   end
 
   def generate_event
-    event = rand(0..11)
-     
+    rand(0..11)     
   end
 
 end
@@ -179,7 +176,7 @@ class Free_Parking < Tile
   end
 
   def generate_event
-    event = 20     
+    pass     
   end
 
 end
@@ -191,7 +188,7 @@ class Jail < Tile
   end
 
   def generate_event
-    event = rand(0..11)
+    rand(0..11)
      
   end
 
@@ -208,7 +205,7 @@ class Go_To_Jail < Tile
   end
 
   def generate_event
-    event = rand(0..11)
+    rand(0..11)
      
   end
 end
