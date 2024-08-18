@@ -169,7 +169,7 @@ class Community < Tile  # similar to chance but with different random events
 
 end
 
-class Free_Parking < Tile
+class Free_Parking < Tile # Implementation still requires
   
   def initialize(name)
     super(name)

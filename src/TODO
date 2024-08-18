@@ -1,7 +1,3 @@
-Add Community Chest events that take money from other players
-
-Implement RR and Utilities logic for better returns
-
 Implement new starting state for properties
     One state assumes all properties have one house to begin
     Examine effect on ROI
@@ -10,3 +6,5 @@ Implement upgrade policy
     Policy must check funds 
     Upgrade properties based on criteria
         ROI of previous games?
+
+Create meta-simulation to run simulation multiple times and aggregate the results

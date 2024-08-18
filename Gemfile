@@ -3,5 +3,4 @@
 source "https://rubygems.org"
 
 # gems
-gem "polars-df"
-gem "vega"
+gem 'rover-df'

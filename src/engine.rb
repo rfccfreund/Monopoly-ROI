@@ -3,11 +3,11 @@ require './tile'
 require './forge'
 
 
-
-def run_simulation(debug=false)
+# Returns an array which contains an array of property returns for each game played  
+def run_simulation(number, debug=false)
   all_returns = []
 
-  50.times do
+  number.times do
     players = create_players()
     game_board = create_gameboard()
     all_returns << play_game(players, 100, game_board, debug)
@@ -17,7 +17,7 @@ def run_simulation(debug=false)
 end
 
 
-
+# returns an array of each properties revenue / cost
 def play_game(players, rounds, game_board, debug) 
     prop_returns = []
     
@@ -45,7 +45,7 @@ def play_game(players, rounds, game_board, debug)
   prop_returns  
 end
 
-
+# central game logic which implements the logic of each tile in the gameboard
 def eval_tile(tile, player, game_board)
   case tile.class.to_s
 
