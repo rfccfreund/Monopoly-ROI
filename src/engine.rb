@@ -18,7 +18,7 @@ end
 
 
 # returns an array of each properties revenue / cost
-def play_game(players, rounds, game_board, debug) 
+def play_game(players, rounds, game_board, debug=false) 
     prop_returns = []
     
     rounds.times {   
@@ -30,15 +30,18 @@ def play_game(players, rounds, game_board, debug)
     }
 
     if debug == true
-      players.each do |player| player.current_holdings end 
-    
+      players.each do |player| player.current_holdings end     
     end
     
 
     game_board.each do |prop|
-        puts prop.info
+        if debug == true
+          puts prop.info
+        end
         if (prop.is_a?(Property) or prop.is_a?(Railroad) or prop.is_a?(Utility))
-          puts prop.return_on_investment
+          if debug == true
+            puts prop.return_on_investment
+          end
           prop_returns << prop.return_on_investment             
         end
       end
@@ -116,11 +119,11 @@ def eval_tile(tile, player, game_board)
     end
     
   else
-    puts "Another tile type" 
+    puts "Another tile type - implementation coming soon" 
 
   end
   
-  player.cash_on_hand 
+  player.cash_on_hand # player function looks at debug status before printing
   
 end 
   
