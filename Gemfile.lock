@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    csv (3.3.0)
     numo-narray (0.9.2.1)
     rover-df (0.4.0)
       numo-narray (>= 0.9.1.9)
@@ -9,6 +10,7 @@ PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
+  csv
   rover-df
 
 BUNDLED WITH

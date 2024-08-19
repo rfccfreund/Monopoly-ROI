@@ -1,5 +1,6 @@
 require './engine'
 require 'pp'
+require 'csv'
 require 'rover-df'
 
 # Pregame setup
@@ -27,7 +28,12 @@ all_returns.each do
   avg_returns << game.inject{ |sum, num| sum + num}.to_f / game.size
 end
 
+output_string = CSV.generate('', headers: properties, write_headers: true) do |csv|
+  csv << avg_returns
+end
+
 # Combines property names with returns 
+pp output_string
 pp properties.zip(avg_returns)
 
 
