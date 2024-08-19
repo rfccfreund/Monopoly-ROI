@@ -39,6 +39,7 @@ CSV.open("monopoly_returns.csv", "w") do |csv|
    csv << simulation
   end
 end
+
 # Combines property names with returns 
 # pp properties.zip(avg_returns)
 
