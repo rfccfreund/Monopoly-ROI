@@ -10,7 +10,7 @@ def run_simulation(number, debug=false)
   number.times do
     players = create_players()
     game_board = create_gameboard()
-    all_returns << play_game(players, 100, game_board, debug)
+    all_returns << play_game(players, 100, game_board, debug, 1)
   end
 
   return all_returns
@@ -18,14 +18,14 @@ end
 
 
 # returns an array of each properties revenue / cost
-def play_game(players, rounds, game_board, debug=false) 
+def play_game(players, rounds, game_board, debug=false, houses = 0) 
     prop_returns = []
     
     rounds.times {   
       players.each do |player| 
         player.roll_dice
         loc = game_board[player.position]       
-        eval_tile(loc, player, game_board)        
+        eval_tile(loc, player, game_board, houses)        
       end       
     }
 
@@ -49,12 +49,18 @@ def play_game(players, rounds, game_board, debug=false)
 end
 
 # central game logic which implements the logic of each tile in the gameboard
-def eval_tile(tile, player, game_board)
+def eval_tile(tile, player, game_board, houses)
   case tile.class.to_s
 
   when 'Property'
     unless tile.is_owned
-      player.purchase(tile)      
+      player.purchase(tile)
+      if houses > 0
+        houses.times{
+          tile.build_house
+        }    
+        
+      end      
     else
       player.pay_player(tile.rent, tile.is_owned)
       tile.generate_income

@@ -37,7 +37,7 @@ class Property < Tile
     end
 
     def build_house
-      if @houses <= 4
+      if @houses < 4
         @houses += 1
         @rent = @rent_path[@houses]
       else
