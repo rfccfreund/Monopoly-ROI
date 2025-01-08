@@ -1,6 +1,6 @@
 require './tile'
 
-
+# Object names are for clarity. Functionally the names don't get used
 def create_gameboard 
   game_board = [
   go = Go.new("Go"), # Space 0
@@ -43,8 +43,9 @@ def create_gameboard
   park_place = Property.new( "Park Place", 350,  [35, 175]), 
   lux_tax = Jail.new("Luxury Tax"),
   boardwalk = Property.new( "Boardwalk", 400, [50, 200]) # Space 39 + Go = 40
-]                 
+  ]                
   
+  return game_board
 end
 
 def create_players

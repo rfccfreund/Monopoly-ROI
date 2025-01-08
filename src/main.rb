@@ -4,16 +4,24 @@ require 'csv'
 require 'rover-df'
 
 # Pregame setup
+# num_of_simulations determines how many times the simulation is run
+# num_of_games determines the number of games in each simulation
+# Property names are feed into csv for column names
+# all_simulation_returns list stores a list of the average value of each aggregate simulations returns
+ 
+num_of_simulations = 100
+num_of_games = 50
 properties = ["Med", "Baltic", "RR", "Ori Ave", "Vermont", "Connecticut", "Charles Place", "EE", "States Ave", "Virginia", "Penn Rail", "St. James",
 "Tenn Ave", "NY Ave", "Ken Ave", "Indiana", "Illinois", "B&O Rail", "Atlantic Ave", "Ventnor Ave", "WW", "Marvin Gardins", "Pacific Ave", "NC Ave", "Penn Ave",
 "Short Line", "Park Place", "Boardwalk"]
 all_simulation_returns = []
 
-# Runs monopoly simulation x number of times
+
+# Runs monopoly simulation x number of times and each simulation is comprised of y number of games
 # naive policy is purchase everything 
-100.times do
+num_of_simulations.times do
   avg_returns = []
-  all_returns = run_simulation(50)
+  all_returns = run_simulation(num_of_games)
 
   # Game loop:
   # player rolls dice
