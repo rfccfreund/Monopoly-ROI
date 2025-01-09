@@ -1,5 +1,6 @@
 require './player'
 
+# 
 class Tile
     attr_accessor :name
 

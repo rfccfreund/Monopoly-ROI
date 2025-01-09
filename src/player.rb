@@ -25,6 +25,12 @@ class Player
 
     end 
 
+    # post dice roll logic
+    # TODO implement upgrade and trade logic
+    def complete_turn()      
+
+    end
+
     def purchase(property)
         @holdings << property 
         @cash -= property.price
