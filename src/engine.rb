@@ -1,6 +1,7 @@
 require './player'
 require './tile'
 require './forge'
+require './game_state'
 
 
 # Returns an array which contains an array of property returns for each game played  
@@ -10,6 +11,7 @@ def run_simulation(number, debug=false)
   number.times do
     players = create_players()
     game_board = create_gameboard()
+    game_state = create_game_state()
     all_returns << play_game(players, 100, game_board, debug, 1)
   end
 
@@ -19,7 +21,7 @@ end
 
 # returns an array of each properties revenue / cost
 def play_game(players, rounds, game_board, debug=false, houses = 0) 
-    prop_returns = []
+    prop_returns = []    
     
     rounds.times {   
       players.each do |player| 

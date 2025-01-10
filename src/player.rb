@@ -10,6 +10,7 @@ class Player
         @roll = 0
         @debug = false
         @holdings = []
+        @game_log = []
     end
 
     def roll_dice()

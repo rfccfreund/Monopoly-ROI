@@ -62,3 +62,6 @@ def create_players
     players
 end
 
+def create_game_state
+  Game_State.new()
+end
