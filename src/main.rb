@@ -9,8 +9,8 @@ require 'csv'
 # Property names are feed into csv for column names
 # all_simulation_returns list stores a list of the average value of each aggregate simulations returns
  
-num_of_simulations = 1
-num_of_games = 1
+num_of_simulations = 10
+num_of_games = 25
 properties = ["Med", "Baltic", "RR", "Ori Ave", "Vermont", "Connecticut", "Charles Place", "EE", "States Ave", "Virginia", "Penn Rail", "St. James",
 "Tenn Ave", "NY Ave", "Ken Ave", "Indiana", "Illinois", "B&O Rail", "Atlantic Ave", "Ventnor Ave", "WW", "Marvin Gardins", "Pacific Ave", "NC Ave", "Penn Ave",
 "Short Line", "Park Place", "Boardwalk"]

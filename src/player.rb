@@ -35,6 +35,7 @@ class Player
     def purchase(property)
         @holdings << property 
         @cash -= property.price
+        @turn_info += "  \n" + @name + " bought " + property.info
         property.update_owner(self)        
     end
 
@@ -50,6 +51,7 @@ class Player
         event = property.generate_event()
         
         if property.is_a?(Chance)
+          @turn_info += "  \n" + @name + " drew a chance card." 
             case event
 
             when 0
@@ -92,6 +94,7 @@ class Player
             end
         
         elsif property.is_a?(Community)  
+          @turn_info += "  \n" + @name + " drew a Community Chest card." 
             case event
 
             when 0
