@@ -12,7 +12,7 @@ def run_simulation(number, debug=false)
     players = create_players()
     game_board = create_gameboard()
     game_state = create_game_state()
-    all_returns << play_game(players, 100, game_board, debug, 1)
+    all_returns << play_game(players, 100, game_board, game_state, debug, 0)
   end
 
   return all_returns
@@ -20,16 +20,23 @@ end
 
 
 # returns an array of each properties revenue / cost
-def play_game(players, rounds, game_board, debug=false, houses = 0) 
+def play_game(players, rounds, game_board, game_state, debug=false, houses = 0) 
     prop_returns = []    
     
     rounds.times {   
       players.each do |player| 
         player.roll_dice
         loc = game_board[player.position]       
-        eval_tile(loc, player, game_board, houses)        
-      end       
+        eval_tile(loc, player, game_board, houses) 
+        game_state.update_game_log(player.turn_summary())       
+      end
+      
+      game_state.game_log.each do |pturn|
+        puts pturn
+      end
+      game_state.next_turn()       
     }
+    puts game_state.turn
 
     if debug == true
       players.each do |player| player.current_holdings end     

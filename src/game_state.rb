@@ -9,6 +9,13 @@ class Game_State
     @game_log = [] 
   end
 
+  def next_turn
+    @turn += 1 
+  end
+
+  def update_game_log(action)
+    @game_log.append(action)
+  end
   
 end
 

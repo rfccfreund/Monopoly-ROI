@@ -1,7 +1,7 @@
 require './engine'
 require 'pp'
 require 'csv'
-require 'rover-df'
+
 
 # Pregame setup
 # num_of_simulations determines how many times the simulation is run
@@ -9,8 +9,8 @@ require 'rover-df'
 # Property names are feed into csv for column names
 # all_simulation_returns list stores a list of the average value of each aggregate simulations returns
  
-num_of_simulations = 100
-num_of_games = 50
+num_of_simulations = 1
+num_of_games = 1
 properties = ["Med", "Baltic", "RR", "Ori Ave", "Vermont", "Connecticut", "Charles Place", "EE", "States Ave", "Virginia", "Penn Rail", "St. James",
 "Tenn Ave", "NY Ave", "Ken Ave", "Indiana", "Illinois", "B&O Rail", "Atlantic Ave", "Ventnor Ave", "WW", "Marvin Gardins", "Pacific Ave", "NC Ave", "Penn Ave",
 "Short Line", "Park Place", "Boardwalk"]

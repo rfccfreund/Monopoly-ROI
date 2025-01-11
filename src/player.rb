@@ -10,14 +10,14 @@ class Player
         @roll = 0
         @debug = false
         @holdings = []
-        @game_log = []
+        @turn_info = ''
     end
 
     def roll_dice()
+        @turn_info = ' '
         @roll = rand(1..6) + rand(1..6)
-        if @debug
-          puts "#{@name} rolls a #{@roll}"
-        end
+        @turn_info += "#{@name} rolls a #{@roll}"
+        
         @position += @roll
         if @position > 39 # replace with gameboard length method 
             @cash += 200 # for passing go
@@ -174,5 +174,9 @@ class Player
     def current_holdings
         puts "\n #{@name}"
         @holdings.each {|prop| puts prop.info}
+    end
+
+    def turn_summary()
+      return @turn_info
     end
 end
