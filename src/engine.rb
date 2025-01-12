@@ -133,8 +133,11 @@ def eval_tile(tile, player, game_board, houses)
       end
     end
     
+  when 'Free_Parking'
+    puts "#{player.name} landed on Free Parking"
+  
   else
-    puts "Another tile type - implementation coming soon" 
+    puts "Another tile type - implementation coming so" 
 
   end
   

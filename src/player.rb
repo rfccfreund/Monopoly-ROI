@@ -25,9 +25,9 @@ class Player
         if @position > 39 # replace with gameboard length method 
             @cash += 200 # for passing go
             @position = @position % 39 - 1
-            @turn_info += "\n#{@name} landed on #{@position}" 
+            @turn_info +=  "-> #{@name} landed on #{@position}" 
         end
-        @turn_info += "\n#{@name} landed on #{@position} -> "  
+        @turn_info += "\n#{@name} landed on #{@position}"  
 
     end 
 
@@ -40,7 +40,7 @@ class Player
     def purchase(property)
         @holdings << property 
         @cash -= property.price
-        @turn_info += "  \n" + @name + " bought " + property.info
+        @turn_info += " -> " + @name + " bought " + property.info
         property.update_owner(self)        
     end
 
@@ -56,7 +56,7 @@ class Player
         event = property.generate_event()
         
         if property.is_a?(Chance)
-          @turn_info += "  \n" + @name + " drew a chance card." 
+          @turn_info += " -> " + @name + " drew a Chance card." 
             case event
 
             when 0
@@ -64,7 +64,7 @@ class Player
             
             when 1
               return self.move_player_to(21) # Advance to Ill Ave
-              # need pass GO logic...maybe an array of functions to return
+              # need pass GO logic...get current player position and compare to Ill ave
     
             when 2
               return self.move_player_to(6) # advance to St. Charles
@@ -99,7 +99,7 @@ class Player
             end
         
         elsif property.is_a?(Community)  
-          @turn_info += "  \n" + @name + " drew a Community Chest card." 
+          @turn_info += "-> " + @name + " drew a Community Chest card." 
             case event
 
             when 0
