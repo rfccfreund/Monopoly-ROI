@@ -13,6 +13,7 @@ class Player
         @roll = 0
         @debug = false
         @holdings = []
+        @prop_sets = {Red: false, Blue: false, Green: false }
         @turn_info = ''
     end
 
@@ -41,6 +42,7 @@ class Player
         @holdings << property 
         @cash -= property.price
         @turn_info += " -> " + @name + " bought " + property.info
+        self.check_for_sets()
         property.update_owner(self)        
     end
 
@@ -50,6 +52,15 @@ class Player
 
     def upgrade_prop(property)
       
+    end
+
+    # iterates through players holdings and counts colors. If enough a one color, update prop sets
+    # from False to True
+    def check_for_sets()
+      set_counts = {Red: 0, None: 0}
+      @holdings.each do |prop|
+        set_counts[prop.color] += 1
+      end       
     end
 
     def draws_event(property)

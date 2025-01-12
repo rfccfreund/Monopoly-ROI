@@ -14,12 +14,13 @@ class Tile
 end
 
 class Property < Tile
-    attr_accessor :price, :rent, :is_owned
+    attr_accessor :price, :rent, :is_owned, :color
 
     def initialize(name, price, rent_path)
         super(name)
         @price = price
         @rent_path = rent_path
+        @color = :Red
         @rent = 0
         @is_owned = false 
         @revenue = 0
@@ -82,7 +83,7 @@ class Go < Tile
 end 
 
 class Utility < Tile 
-  attr_accessor :price, :rent, :is_owned
+  attr_accessor :price, :rent, :is_owned, :color
   
   def initialize(name)
     super(name)
@@ -91,6 +92,7 @@ class Utility < Tile
     @num_utilities = 0
     @is_owned = false 
     @revenue = 0
+    @color = :None
     @rent = @rent_path[@num_utilities]    
   end
 
@@ -113,7 +115,7 @@ class Utility < Tile
 end
 
 class Railroad < Tile 
-  attr_accessor :price, :rent, :is_owned
+  attr_accessor :price, :rent, :is_owned, :color
   
   def initialize(name)
     super(name)
@@ -122,6 +124,7 @@ class Railroad < Tile
     @num_railroads = 0
     @is_owned = false 
     @revenue = 0
+    @color = :None
     @rent = @rent_path[@num_railroads]    
   end
 
