@@ -1,5 +1,8 @@
 require './tile'
 
+
+# TODO implement position to tile map for roll dice function
+
 class Player 
     attr_accessor :name, :cash, :position, :holdings, :num_houses, :debug
 
@@ -22,7 +25,9 @@ class Player
         if @position > 39 # replace with gameboard length method 
             @cash += 200 # for passing go
             @position = @position % 39 - 1
-        end  
+            @turn_info += "\n#{@name} landed on #{@position}" 
+        end
+        @turn_info += "\n#{@name} landed on #{@position} -> "  
 
     end 
 
@@ -149,6 +154,7 @@ class Player
 
     def pay_player(amount, player)
       @cash -= amount
+      @turn_info += "#{@name} paid $#{amount} to " + player.name
       player.cash += amount
     end
 

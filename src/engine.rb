@@ -12,7 +12,7 @@ def run_simulation(number, debug=false)
     players = create_players()
     game_board = create_gameboard()
     game_state = create_game_state()
-    all_returns << play_game(players, 100, game_board, game_state, debug, 0)
+    all_returns << play_game(players, 50, game_board, game_state, debug, 0)
   end
 
   return all_returns
