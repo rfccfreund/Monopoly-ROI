@@ -1,10 +1,12 @@
 require './tile'
+require './game_state'
+require 'pp'
 
 
 # TODO implement position to tile map for roll dice function
 
 class Player 
-    attr_accessor :name, :cash, :position, :holdings, :num_houses, :debug
+    attr_accessor :name, :cash, :position, :holdings, :num_houses, :debug, :sets
 
     def initialize(name)
         @name = name
@@ -13,8 +15,11 @@ class Player
         @roll = 0
         @debug = false
         @holdings = []
-        @prop_sets = {Red: false, Blue: false, Green: false }
+        @prop_sets = {navy: false, light_blue: false, brown: false,
+                      orange: false, red: false, yellow: false,
+                      green: false, blue: false}
         @turn_info = ''
+        @set = ''
     end
 
     def roll_dice()
@@ -42,7 +47,7 @@ class Player
         @holdings << property 
         @cash -= property.price
         @turn_info += " -> " + @name + " bought " + property.info
-        self.check_for_sets()
+        self.check_for_sets()        
         property.update_owner(self)        
     end
 
@@ -57,10 +62,18 @@ class Player
     # iterates through players holdings and counts colors. If enough a one color, update prop sets
     # from False to True
     def check_for_sets()
-      set_counts = {Red: 0, None: 0}
+      set_counts = {navy: 0, light_blue: 0, brown: 0,
+      orange: 0, red: 0, yellow: 0,
+      green: 0, blue: 0}
+      
+      set_counts.default = 0
+
       @holdings.each do |prop|
         set_counts[prop.color] += 1
-      end       
+        
+      end    
+      
+      
     end
 
     def draws_event(property)
@@ -165,7 +178,7 @@ class Player
 
     def pay_player(amount, player)
       @cash -= amount
-      @turn_info += "#{@name} paid $#{amount} to " + player.name
+      @turn_info += " -> #{@name} paid $#{amount} to " + player.name
       player.cash += amount
     end
 
@@ -193,7 +206,7 @@ class Player
 
     def current_holdings
         puts "\n #{@name}"
-        @holdings.each {|prop| puts prop.info}
+        @holdings.each {|prop| puts prop.info}        
     end
 
     def turn_summary()

@@ -21,7 +21,7 @@ all_simulation_returns = []
 # naive policy is purchase everything 
 num_of_simulations.times do
   avg_returns = []
-  all_returns = run_simulation(num_of_games)
+  all_returns = run_simulation(num_of_games, true)
 
   # Game loop:
   # player rolls dice

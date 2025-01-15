@@ -16,11 +16,11 @@ end
 class Property < Tile
     attr_accessor :price, :rent, :is_owned, :color
 
-    def initialize(name, price, rent_path)
+    def initialize(name, price, rent_path, color)
         super(name)
         @price = price
         @rent_path = rent_path
-        @color = :Red
+        @color = color
         @rent = 0
         @is_owned = false 
         @revenue = 0
