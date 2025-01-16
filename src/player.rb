@@ -76,6 +76,21 @@ class Player
       
     end
 
+    def count_sets()
+      set_counts = {navy: 0, light_blue: 0, brown: 0,
+      orange: 0, red: 0, yellow: 0,
+      green: 0, blue: 0}
+      
+      set_counts.default = 0
+
+      @holdings.each do |prop|
+        set_counts[prop.color] += 1        
+      end    
+      
+      pp set_counts      
+    end
+
+
     def draws_event(property)
         event = property.generate_event()
         
