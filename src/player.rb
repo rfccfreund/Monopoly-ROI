@@ -73,7 +73,53 @@ class Player
         
       end    
       
+      if set_counts[:navy] == 2
+        @prop_sets[:navy] = true
+      else
+        @prop_sets[:navy] = false
+      end
       
+      if set_counts[:light_blue] == 3
+        @prop_sets[:light_blue] = true
+      else
+        @prop_sets[:light_blue] = false 
+      end 
+
+      if set_counts[:brown] == 3
+        @prop_sets[:brown] = true
+      else
+        @prop_sets[:brown] = false 
+      end 
+
+      if set_counts[:orange] == 3
+        @prop_sets[:orange] = true
+      else
+        @prop_sets[:orange] = false 
+      end 
+
+      if set_counts[:red] == 3
+        @prop_sets[:red] = true 
+      else
+        @prop_sets[:red] = false
+      end 
+
+      if set_counts[:yellow] == 3
+        @prop_sets[:yellow] = true 
+      else
+        @prop_sets[:yellow] = false
+      end 
+
+      if set_counts[:green] == 3
+        @prop_sets[:green] = true 
+      else
+        @prop_sets[:green] = false
+      end 
+
+      if set_counts[:blue] == 2
+        @prop_sets[:blue] = true 
+      else
+        @prop_sets[:blue] = false
+      end 
     end
 
     def count_sets()
