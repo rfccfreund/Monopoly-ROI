@@ -40,7 +40,13 @@ class Player
     # post dice roll logic
     # TODO implement upgrade and trade logic
     def complete_turn()      
-
+      if @cash < 100
+        uts "I'm a poor boy from a poor family"
+      elsif @cash < 500
+        puts "We're in the danger zone"
+      else @cash < 1000
+        puts "I'm burning through capital"
+      end
     end
 
     def purchase(property)
