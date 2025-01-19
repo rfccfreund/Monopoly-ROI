@@ -10,7 +10,7 @@ class Player
 
     def initialize(name)
         @name = name
-        @cash = 1500
+        @cash = 900
         @position = 0
         @roll = 0
         @debug = false
@@ -41,11 +41,11 @@ class Player
     # TODO implement upgrade and trade logic
     def complete_turn()      
       if @cash < 100
-        uts "I'm a poor boy from a poor family"
+        puts "#{@name}: I'm a poor boy from a poor family. #{@cash}"
       elsif @cash < 500
-        puts "We're in the danger zone"
-      else @cash < 1000
-        puts "I'm burning through capital"
+        puts "#{@name}: We're in the danger zone. #{@cash}"
+      elsif @cash < 1000
+        puts "#{@name}: I'm burning through capital. #{@cash}"
       end
     end
 
