@@ -28,7 +28,8 @@ def play_game(players, rounds, game_board, game_state, debug=false, houses = 0)
         player.roll_dice
         loc = game_board[player.position]       
         eval_tile(loc, player, game_board, houses) 
-        game_state.update_game_log(player.turn_summary())       
+        game_state.update_game_log(player.turn_summary())  
+        player.complete_turn     
       end
       
       game_state.game_log.each do |pturn|
