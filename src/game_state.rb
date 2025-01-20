@@ -16,6 +16,10 @@ class Game_State
   def update_game_log(action)
     @game_log.append(action)
   end
+
+  def post_game_summary()
+    # will take the player status function to print out the ending statistics of each player        
+  end
   
 end
 
