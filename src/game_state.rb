@@ -17,8 +17,11 @@ class Game_State
     @game_log.append(action)
   end
 
-  def post_game_summary()
-    # will take the player status function to print out the ending statistics of each player        
+  def post_game_summary(players)
+    players.each do |player|
+      player.current_holdings      
+      player.count_sets 
+    end      
   end
   
 end

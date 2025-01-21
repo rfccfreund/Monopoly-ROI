@@ -39,10 +39,7 @@ def play_game(players, rounds, game_board, game_state, debug=false, houses = 0)
     }
 
     if debug == true
-      players.each do |player|
-        player.current_holdings      
-        player.count_sets 
-      end
+      game_state.post_game_summary(players)
     end
     
 
