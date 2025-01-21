@@ -41,12 +41,14 @@ class Player
     # TODO implement upgrade and trade logic
     def complete_turn()      
       if @cash < 100
-        puts "#{@name}: I'm a poor boy from a poor family. #{@cash}"
+        @turn_info += "\n -> #{@name}: I'm a poor boy from a poor family. #{@cash}"
       elsif @cash < 500
-        puts "#{@name}: We're in the danger zone. #{@cash}"
+        @turn_info += "\n -> #{@name}: We're in the danger zone. #{@cash}"
       elsif @cash < 1000
-        puts "#{@name}: I'm burning through capital. #{@cash}"
+        @turn_info += "\n #{@name}: I'm burning through capital. #{@cash}"
       end
+
+      # logic for using the upgrade prop function 
     end
 
     def purchase(property)

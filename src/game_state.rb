@@ -16,6 +16,13 @@ class Game_State
   def update_game_log(action)
     @game_log.append(action)
   end
+
+  def post_game_summary(players)
+    players.each do |player|
+      player.current_holdings      
+      player.count_sets 
+    end      
+  end
   
 end
 
