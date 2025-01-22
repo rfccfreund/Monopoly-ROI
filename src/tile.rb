@@ -14,7 +14,7 @@ class Tile
 end
 
 class Property < Tile
-    attr_accessor :price, :rent, :is_owned, :color
+    attr_accessor :price, :rent, :is_owned, :color, :rent
 
     def initialize(name, price, rent_path, color)
         super(name)

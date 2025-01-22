@@ -44,13 +44,7 @@ def play_game(players, rounds, game_board, game_state, debug=false, houses = 0)
     
 
     game_board.each do |prop|
-        if debug == true
-          puts prop.info
-        end
         if (prop.is_a?(Property) or prop.is_a?(Railroad) or prop.is_a?(Utility))
-          if debug == true
-            puts prop.return_on_investment
-          end
           prop_returns << prop.return_on_investment             
         end
       end

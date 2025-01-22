@@ -59,12 +59,15 @@ class Player
         property.update_owner(self)        
     end
 
-    def toggle_debug
+    def toggle_debug!
       @debug = true
     end
 
-    def upgrade_prop(property)
-      
+    def upgrade_prop!(property)
+      if property.num_houses < 1
+        property.build_house()
+        player.cash -= 100
+      end
     end
 
     # iterates through players holdings and counts colors. If enough a one color, update prop sets
@@ -267,15 +270,12 @@ class Player
       end         
     end
 
-    def cash_on_hand
-      if @debug
-        puts "#{@name} has $#{@cash} on hand"
-      end
+    def cash_on_hand      
+      puts "#{@name} has $#{@cash} on hand"
     end
 
     def current_holdings
-        puts "\n #{@name}"
-        @holdings.each {|prop| puts prop.info}        
+      @holdings.each {|prop| puts prop.info}        
     end
 
     def turn_summary()
