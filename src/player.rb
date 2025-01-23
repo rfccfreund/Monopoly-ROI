@@ -20,6 +20,8 @@ class Player
                       green: false, blue: false}
         @turn_info = ''
         @set = ''
+        @transactions = [] # list for storing transaction data 
+        @is_active = true # status used to know if a player should take a turn or not
     end
 
     def roll_dice()
@@ -59,12 +61,15 @@ class Player
         property.update_owner(self)        
     end
 
-    def toggle_debug
+    def toggle_debug!
       @debug = true
     end
 
-    def upgrade_prop(property)
-      
+    def upgrade_prop!(property)
+      if property.num_houses < 1
+        property.build_house()
+        player.cash -= 100
+      end
     end
 
     # iterates through players holdings and counts colors. If enough a one color, update prop sets
@@ -130,6 +135,7 @@ class Player
       end 
     end
 
+    # count the number of each color to determine if there is a set 
     def count_sets()
       set_counts = {navy: 0, light_blue: 0, brown: 0,
       orange: 0, red: 0, yellow: 0,
@@ -267,15 +273,12 @@ class Player
       end         
     end
 
-    def cash_on_hand
-      if @debug
-        puts "#{@name} has $#{@cash} on hand"
-      end
+    def cash_on_hand      
+      puts "#{@name} has $#{@cash} on hand"
     end
 
     def current_holdings
-        puts "\n #{@name}"
-        @holdings.each {|prop| puts prop.info}        
+      @holdings.each {|prop| puts prop.info}        
     end
 
     def turn_summary()

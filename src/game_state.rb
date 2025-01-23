@@ -19,9 +19,14 @@ class Game_State
 
   def post_game_summary(players)
     players.each do |player|
+      player.cash_on_hand
       player.current_holdings      
-      player.count_sets 
+      player.count_sets      
     end      
+  end
+
+  def check_for_losers(players)
+    # insert function that looks at cash and anything less than zero toggle player status
   end
   
 end
