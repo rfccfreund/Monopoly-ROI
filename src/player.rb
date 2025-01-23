@@ -20,6 +20,8 @@ class Player
                       green: false, blue: false}
         @turn_info = ''
         @set = ''
+        @transactions = [] # list for storing transaction data 
+        @is_active = true # status used to know if a player should take a turn or not
     end
 
     def roll_dice()
@@ -133,6 +135,7 @@ class Player
       end 
     end
 
+    # count the number of each color to determine if there is a set 
     def count_sets()
       set_counts = {navy: 0, light_blue: 0, brown: 0,
       orange: 0, red: 0, yellow: 0,
