@@ -6,7 +6,7 @@ require 'pp'
 # TODO implement position to tile map for roll dice function
 
 class Player 
-    attr_accessor :name, :cash, :position, :holdings, :num_houses, :debug, :sets
+    attr_accessor :name, :cash, :position, :holdings, :num_houses, :debug, :sets, :is_active
 
     def initialize(name)
         @name = name
@@ -283,5 +283,9 @@ class Player
 
     def turn_summary()
       return @turn_info
+    end
+
+    def lose_game!()
+      @is_active = false
     end
 end

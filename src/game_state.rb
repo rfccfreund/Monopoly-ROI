@@ -25,8 +25,10 @@ class Game_State
     end      
   end
 
-  def check_for_losers(players)
-    # insert function that looks at cash and anything less than zero toggle player status
+  def check_for_losers(player)
+      if player.cash <= 0
+        player.lose_game
+      end    
   end
   
 end
