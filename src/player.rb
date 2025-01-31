@@ -6,11 +6,11 @@ require 'pp'
 # TODO implement position to tile map for roll dice function
 
 class Player 
-    attr_accessor :name, :cash, :position, :holdings, :num_houses, :debug, :sets
+    attr_accessor :name, :cash, :position, :holdings, :num_houses, :debug, :sets, :is_active
 
     def initialize(name)
         @name = name
-        @cash = 1500
+        @cash = 900
         @position = 0
         @roll = 0
         @debug = false
@@ -20,6 +20,8 @@ class Player
                       green: false, blue: false}
         @turn_info = ''
         @set = ''
+        @transactions = [] # list for storing transaction data 
+        @is_active = true # status used to know if a player should take a turn or not
     end
 
     def roll_dice()
@@ -40,7 +42,17 @@ class Player
     # post dice roll logic
     # TODO implement upgrade and trade logic
     def complete_turn()      
+      if @cash < 100
+        @turn_info += "\n -> #{@name}: I'm a poor boy from a poor family. #{@cash}"
+      elsif @cash < 500
+        @turn_info += "\n -> #{@name}: We're in the danger zone. #{@cash}"
+      elsif @cash < 1000
+        @turn_info += "\n #{@name}: I'm burning through capital. #{@cash}"
+      end
 
+      self.display_sets()
+
+      # logic for using the upgrade prop function 
     end
 
     def purchase(property)
@@ -51,12 +63,15 @@ class Player
         property.update_owner(self)        
     end
 
-    def toggle_debug
+    def toggle_debug!
       @debug = true
     end
 
-    def upgrade_prop(property)
-      
+    def upgrade_prop!(property)
+      if property.num_houses < 1
+        property.build_house()
+        player.cash -= 100
+      end
     end
 
     # iterates through players holdings and counts colors. If enough a one color, update prop sets
@@ -122,6 +137,13 @@ class Player
       end 
     end
 
+    def display_sets()
+      @prop_sets.each do |key, value|        
+        puts "Your order includes: #{value} #{key}."
+      end    
+    end
+
+    # count the number of each color to determine if there is a set 
     def count_sets()
       set_counts = {navy: 0, light_blue: 0, brown: 0,
       orange: 0, red: 0, yellow: 0,
@@ -136,8 +158,9 @@ class Player
       pp set_counts      
     end
 
-
+    # generate_event() is a method that returns a random number
     def draws_event(property)
+        
         event = property.generate_event()
         
         if property.is_a?(Chance)
@@ -229,20 +252,24 @@ class Player
 
     end
 
+    # function changes position to a certain number
     def move_player_to(int)
       @position = int
     end 
     
+    # updates player position by a certain number
     def move_player(int)
       @position += int
     end
 
+    # update a player cash on hand by a number (int)
     def pay_player(amount, player)
       @cash -= amount
       @turn_info += " -> #{@name} paid $#{amount} to " + player.name
       player.cash += amount
     end
 
+    # reduces a player on hand by a number (int)
     def charge_player(amount, player)
       @cash -= amount * @roll
       player.cash += amount * @roll
@@ -259,18 +286,19 @@ class Player
       end         
     end
 
-    def cash_on_hand
-      if @debug
-        puts "#{@name} has $#{@cash} on hand"
-      end
+    def cash_on_hand      
+      puts "#{@name} has $#{@cash} on hand"
     end
 
     def current_holdings
-        puts "\n #{@name}"
-        @holdings.each {|prop| puts prop.info}        
+      @holdings.each {|prop| puts prop.info}        
     end
 
     def turn_summary()
       return @turn_info
+    end
+
+    def lose_game!()
+      @is_active = false
     end
 end
