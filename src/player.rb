@@ -50,6 +50,8 @@ class Player
         @turn_info += "\n #{@name}: I'm burning through capital. #{@cash}"
       end
 
+      self.display_sets()
+
       # logic for using the upgrade prop function 
     end
 
@@ -135,6 +137,12 @@ class Player
       end 
     end
 
+    def display_sets()
+      @prop_sets.each do |key, value|        
+        puts "Your order includes: #{value} #{key}."
+      end    
+    end
+
     # count the number of each color to determine if there is a set 
     def count_sets()
       set_counts = {navy: 0, light_blue: 0, brown: 0,
@@ -152,6 +160,7 @@ class Player
 
 
     def draws_event(property)
+        # generate_event() is a method that returns a random number
         event = property.generate_event()
         
         if property.is_a?(Chance)
