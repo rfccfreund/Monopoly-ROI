@@ -25,10 +25,14 @@ def play_game(players, rounds, game_board, game_state, debug=false, houses = 0)
     
     rounds.times {   
       players.each do |player|
-        player.roll_dice
-        loc = game_board[player.position]       
-        eval_tile(loc, player, game_board, houses) 
-        game_state.update_game_log(player.turn_summary())       
+        if player.is_active
+          player.roll_dice
+          loc = game_board[player.position]       
+          eval_tile(loc, player, game_board, houses) 
+          game_state.check_for_losers(player)
+          player.complete_turn  
+          game_state.update_game_log(player.turn_summary())        
+        end     
       end
       
       game_state.game_log.each do |pturn|
@@ -38,21 +42,12 @@ def play_game(players, rounds, game_board, game_state, debug=false, houses = 0)
     }
 
     if debug == true
-      players.each do |player|
-        player.current_holdings      
-        player.count_sets 
-      end
+      game_state.post_game_summary(players)
     end
     
 
     game_board.each do |prop|
-        if debug == true
-          puts prop.info
-        end
         if (prop.is_a?(Property) or prop.is_a?(Railroad) or prop.is_a?(Utility))
-          if debug == true
-            puts prop.return_on_investment
-          end
           prop_returns << prop.return_on_investment             
         end
       end

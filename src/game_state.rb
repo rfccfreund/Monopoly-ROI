@@ -16,6 +16,20 @@ class Game_State
   def update_game_log(action)
     @game_log.append(action)
   end
+
+  def post_game_summary(players)
+    players.each do |player|
+      player.cash_on_hand
+      player.current_holdings      
+      player.count_sets      
+    end      
+  end
+
+  def check_for_losers(player)
+      if player.cash <= 0
+        player.lose_game
+      end    
+  end
   
 end
 
