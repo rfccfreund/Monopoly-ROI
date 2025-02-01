@@ -279,10 +279,12 @@ class Player
       player.cash += amount * @roll
     end
 
+    # changes cash attribute of a player by some amount
     def update_cash(amount)
       @cash += amount
     end
     
+    # checks debug status to print out information on a player objects 
     def status
       if @debug
         puts "#{@name} has $#{@cash} and the following properties"
@@ -290,9 +292,11 @@ class Player
       end         
     end
 
+    # getter for cash attribute
     def cash_on_hand      
       puts "#{@name} has $#{@cash} on hand"
     end
+
 
     def current_holdings
       @holdings.each {|prop| puts prop.info}        
@@ -302,6 +306,7 @@ class Player
       return @turn_info
     end
 
+    
     def lose_game!()
       @is_active = false
     end
