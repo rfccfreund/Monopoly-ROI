@@ -22,24 +22,38 @@ end
 # returns an array of each properties revenue / cost
 def play_game(players, rounds, game_board, game_state, debug=false, houses = 0) 
     prop_returns = []    
-    
-    rounds.times {   
-      players.each do |player|
-        if player.is_active
-          player.roll_dice
-          loc = game_board[player.position]       
-          eval_tile(loc, player, game_board, houses) 
-          game_state.check_for_losers(player)
-          player.complete_turn  
-          game_state.update_game_log(player.turn_summary())        
-        end     
-      end
-      
-      game_state.game_log.each do |pturn|
-        puts pturn
-      end
-      game_state.next_turn()
-    }
+    if rounds > 0
+      rounds.times {   
+        players.each do |player|
+          if player.is_active
+            player.roll_dice
+            loc = game_board[player.position]       
+            eval_tile(loc, player, game_board, houses) 
+            game_state.check_for_losers(player)
+            player.complete_turn  
+            game_state.update_game_log(player.turn_summary())        
+          end     
+        end
+        
+        game_state.game_log.each do |pturn|
+          puts pturn
+        end
+        game_state.next_turn()
+      }
+    else 
+      unless game_state.game_over?
+        players.each do |player|
+          if player.is_active
+            player.roll_dice
+            loc = game_board[player.position]       
+            eval_tile(loc, player, game_board, houses) 
+            game_state.check_for_losers(player)
+            player.complete_turn  
+            game_state.update_game_log(player.turn_summary())                  
+          end        
+        end
+      end  
+    end 
 
     if debug == true
       game_state.post_game_summary(players)

@@ -160,11 +160,7 @@ class Player
 
     # generate_event() is a method that returns a random number
     def draws_event(property)
-<<<<<<< HEAD
         
-=======
-        # generate_event() is a method that returns a random number
->>>>>>> 790e8b950bf0849cc98c489ea3980a6ab271581d
         event = property.generate_event()
         
         if property.is_a?(Chance)
@@ -306,7 +302,7 @@ class Player
       return @turn_info
     end
 
-    
+
     def lose_game!()
       @is_active = false
     end

@@ -6,7 +6,8 @@ class Game_State
   def initialize
     @turn = 0
     @free_parking_cash = 0
-    @game_log = [] 
+    @game_log = []
+    @num_losers = 0 
   end
 
   def next_turn
@@ -27,8 +28,17 @@ class Game_State
 
   def check_for_losers(player)
       if player.cash <= 0
-        player.lose_game
+        player.lose_game!
+        @num_losers += 1         
       end    
+  end
+
+  def game_over?      
+    if @num_losers == 2
+      return true 
+    else 
+      return false
+    end
   end
   
 end
