@@ -42,16 +42,6 @@ class Player
     # post dice roll logic
     # TODO implement upgrade and trade logic
     def complete_turn()      
-      if @cash < 100
-        @turn_info += "\n -> #{@name}: I'm a poor boy from a poor family. #{@cash}"
-      elsif @cash < 500
-        @turn_info += "\n -> #{@name}: We're in the danger zone. #{@cash}"
-      elsif @cash < 1000
-        @turn_info += "\n #{@name}: I'm burning through capital. #{@cash}"
-      end
-
-      self.display_sets()
-
       # logic for using the upgrade prop function 
     end
 

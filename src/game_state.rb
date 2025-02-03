@@ -8,6 +8,7 @@ class Game_State
     @free_parking_cash = 0
     @game_log = []
     @num_losers = 0 
+    @game_over = false
   end
 
   def next_turn
@@ -19,11 +20,12 @@ class Game_State
   end
 
   def post_game_summary(players)
-    players.each do |player|
+    puts @num_losers
+    players.each do |player|      
       player.cash_on_hand
       player.current_holdings      
       player.count_sets      
-    end      
+    end
   end
 
   def check_for_losers(player)
@@ -31,14 +33,14 @@ class Game_State
         player.lose_game!
         @num_losers += 1         
       end    
+
+      if @num_losers == 2
+        @game_over = true    
+      end
   end
 
   def game_over?      
-    if @num_losers == 2
-      return true 
-    else 
-      return false
-    end
+    return @game_over
   end
   
 end

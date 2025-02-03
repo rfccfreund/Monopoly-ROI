@@ -12,7 +12,7 @@ def run_simulation(number, debug=false)
     players = create_players()
     game_board = create_gameboard()
     game_state = create_game_state()
-    all_returns << play_game(players, 100, game_board, game_state, debug, 1)
+    all_returns << play_game(players, -2, game_board, game_state, debug, 1)
   end
 
   return all_returns
@@ -41,7 +41,7 @@ def play_game(players, rounds, game_board, game_state, debug=false, houses = 0)
         game_state.next_turn()
       }
     else 
-      unless game_state.game_over?
+      until game_state.game_over? # currently plays out the round which can result in all 3 having less than zero cash
         players.each do |player|
           if player.is_active
             player.roll_dice
@@ -52,6 +52,11 @@ def play_game(players, rounds, game_board, game_state, debug=false, houses = 0)
             game_state.update_game_log(player.turn_summary())                  
           end        
         end
+
+        game_state.game_log.each do |pturn|
+          puts pturn
+        end
+        game_state.next_turn()
       end  
     end 
 
