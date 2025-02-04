@@ -20,8 +20,9 @@ class Game_State
   end
 
   def post_game_summary(players)
-    puts @num_losers
-    players.each do |player|      
+    puts "\n#{@num_losers} players have lost the game"
+    players.each do |player|
+      puts "\n"      
       player.cash_on_hand
       player.current_holdings      
       player.count_sets      

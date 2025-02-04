@@ -10,7 +10,7 @@ class Player
 
     def initialize(name)
         @name = name
-        @cash = 900
+        @cash = 500
         @position = 0
         @roll = 0
         @debug = false
