@@ -10,7 +10,7 @@ class Player
 
     def initialize(name)
         @name = name
-        @cash = 500
+        @cash = 800
         @position = 0
         @roll = 0
         @debug = false
@@ -292,8 +292,15 @@ class Player
       return @turn_info
     end
 
-
+    # lose game function make player not active in the turn order and pops their properties
     def lose_game!()
       @is_active = false
+      @holdings.each do |prop|
+        prop.update_owner(false)        
+      end
+
+      until @holdings.empty?
+        @holdings.pop()
+      end
     end
 end
