@@ -1,54 +1,62 @@
 require './engine'
+require './config'
+require './errors'
 require 'pp'
 require 'csv'
 
-
-# Pregame setup
-# num_of_simulations determines how many times the simulation is run
-# num_of_games determines the number of games in each simulation
-# Property names are feed into csv for column names
-# all_simulation_returns list stores a list of the average value of each aggregate simulations returns
- 
-num_of_simulations = 1
-num_of_games = 1
-properties = ["Med", "Baltic", "RR", "Ori Ave", "Vermont", "Connecticut", "Charles Place", "EE", "States Ave", "Virginia", "Penn Rail", "St. James",
-"Tenn Ave", "NY Ave", "Ken Ave", "Indiana", "Illinois", "B&O Rail", "Atlantic Ave", "Ventnor Ave", "WW", "Marvin Gardins", "Pacific Ave", "NC Ave", "Penn Ave",
-"Short Line", "Park Place", "Boardwalk"]
-all_simulation_returns = []
-
-
-# Runs monopoly simulation x number of times and each simulation is comprised of y number of games
-# naive policy is purchase everything 
-num_of_simulations.times do
-  avg_returns = []
-  all_returns = run_simulation(num_of_games, true)
-
-  # Game loop:
-  # player rolls dice
-  # players position is updated and corresponding tile evaluated
-  # player purchases or pays
-  # other players take turns
-  # next round 
-
-  # Prepares data for aggergation
-  all_returns = all_returns.transpose
-
-  all_returns.each do 
-    |game|
-    avg_returns << game.inject{ |sum, num| sum + num}.to_f / game.size
+# Main simulation runner
+class MonopolySimulator
+  def initialize
+    @all_simulation_returns = []
   end
 
-  all_simulation_returns << avg_returns  
-end 
+  def run_simulations
+    puts "Starting Monopoly simulation..."
+    puts "Running #{Config::NUM_SIMULATIONS} simulations with #{Config::NUM_GAMES_PER_SIMULATION} games each"
+    
+    Config::NUM_SIMULATIONS.times do |sim_num|
+      puts "Running simulation #{sim_num + 1}/#{Config::NUM_SIMULATIONS}" if sim_num % 10 == 0
+      
+      avg_returns = run_single_simulation
+      @all_simulation_returns << avg_returns
+    end
+    
+    export_results
+    puts "Simulation complete! Results exported to #{Config::OUTPUT_FILE}"
+  end
 
-CSV.open("monopoly_returns.csv", "w") do |csv|
-  csv << properties
-  all_simulation_returns.each do |simulation|
-   csv << simulation
+  private
+
+  def run_single_simulation
+    all_returns = run_simulation(Config::NUM_GAMES_PER_SIMULATION, false)
+    
+    # Calculate average returns for each property across all games
+    all_returns = all_returns.transpose
+    
+    all_returns.map do |game_returns|
+      game_returns.inject(0.0) { |sum, num| sum + num } / game_returns.size
+    end
+  end
+
+  def export_results
+    CSV.open(Config::OUTPUT_FILE, "w") do |csv|
+      csv << Config::PROPERTIES
+      @all_simulation_returns.each do |simulation|
+        csv << simulation
+      end
+    end
   end
 end
 
-# Combines property names with returns 
-# pp properties.zip(avg_returns)
+# Run the simulation
+if __FILE__ == $0
+  begin
+    simulator = MonopolySimulator.new
+    simulator.run_simulations
+  rescue => e
+    puts "Error running simulation: #{e.message}"
+    puts e.backtrace.first(5)
+  end
+end
 
 

@@ -1,5 +1,7 @@
 require './tile'
 require './game_state'
+require './config'
+require './errors'
 require 'pp'
 
 
@@ -10,7 +12,7 @@ class Player
 
     def initialize(name)
         @name = name
-        @cash = 800
+        @cash = Config::STARTING_CASH
         @position = 0
         @roll = 0
         @debug = false
@@ -30,13 +32,12 @@ class Player
         @turn_info += "#{@name} rolls a #{@roll}"
         
         @position += @roll
-        if @position > 39 # replace with gameboard length method 
-            @cash += 200 # for passing go
-            @position = @position % 39 - 1
-            @turn_info +=  "-> #{@name} landed on #{@position}" 
+        if @position >= Config::BOARD_SIZE
+            @cash += Config::GO_BONUS # for passing go
+            @position = @position % Config::BOARD_SIZE
+            @turn_info += " -> #{@name} passed GO and collected $#{Config::GO_BONUS}"
         end
-        @turn_info += "\n#{@name} landed on #{@position}"  
-
+        @turn_info += "\n#{@name} landed on position #{@position}"  
     end 
 
     # post dice roll logic
@@ -46,11 +47,25 @@ class Player
     end
 
     def purchase(property)
+        raise MonopolyErrors::InsufficientFundsError, "#{@name} cannot afford #{property.name}" if @cash < property.price
+        
         @holdings << property 
         @cash -= property.price
         @turn_info += " -> " + @name + " bought " + property.info
         self.check_for_sets()        
-        property.update_owner(self)        
+        property.update_owner(self)
+        
+        # Log transaction
+        @transactions << {
+          type: :purchase,
+          property: property.name,
+          cost: property.price,
+          cash_after: @cash
+        }
+    end
+
+    def can_afford?(amount)
+        @cash >= amount
     end
 
     def toggle_debug!
@@ -58,9 +73,10 @@ class Player
     end
 
     def upgrade_prop!(property)
-      if property.num_houses < 1
+      if property.num_houses < Config::MAX_HOUSES && can_afford?(Config::HOUSE_COST)
         property.build_house()
-        player.cash -= 100
+        @cash -= Config::HOUSE_COST
+        @turn_info += " -> #{@name} built a house on #{property.name}"
       end
     end
 
